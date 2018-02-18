@@ -77,7 +77,7 @@ def block_patch(input, k_size=32):
 		padding = [[h_, shape[0]-h_-k_size], [w_, shape[1]-w_-k_size], [0, 0]]
 		padded = tf.pad(patch, padding, "CONSTANT", constant_values=1)
 
-		res = tf.multiply(input, padded)
+		res = tf.multiply(input, padded) + (1-padded)
 	#for generated images
 	else:
 		patch = tf.zeros([k_size, k_size, shape[-1]], dtype=tf.float32)
@@ -90,8 +90,9 @@ def block_patch(input, k_size=32):
 			padding = [[h_, shape[0]-h_-k_size], [w_, shape[1]-w_-k_size], [0, 0]]
 			padded = tf.pad(patch, padding, "CONSTANT", constant_values=1)
 
-			res.append(tf.multiply(input[idx], padded))
+			res.append(tf.multiply(input[idx], padded) + (1-padded))
 		res = tf.stack(res)
+
 
 	return res, padded
 

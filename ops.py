@@ -37,7 +37,6 @@ def load_train_data(args):
 	mask = tf.reshape(mask, [args.input_height, args.input_height, 3])
 	mask = tf.image.convert_image_dtype(mask, dtype=tf.float32)
 
-
 	train_batch, masks = tf.train.shuffle_batch([images, mask],
 										 batch_size=args.batch_size,
 										 capacity=args.batch_size*2,

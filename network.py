@@ -13,6 +13,7 @@ class network():
 
         #prepare training data
         self.Y_r, self.masks, self.data_count = load_train_data(args)
+
         self.build_model()
         self.build_loss()
 
