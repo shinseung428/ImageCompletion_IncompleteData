@@ -40,17 +40,16 @@ def train(args, sess, model):
 
     #training starts here
     while epoch < args.epochs:
-        batch_z = np.random.uniform(-1, 1, size=(args.batch_size , args.input_dim))
 
         #Update Discriminator
-        summary, d_loss, _ = sess.run([all_summary, model.d_loss, d_optimizer], feed_dict={model.z:batch_z})
+        summary, d_loss, _ = sess.run([all_summary, model.d_loss, d_optimizer])
         writer.add_summary(summary, global_step)
 
         #Update Generator
-        summary, g_loss, _ = sess.run([all_summary, model.g_loss, g_optimizer], feed_dict={model.z:batch_z})
+        summary, g_loss, _ = sess.run([all_summary, model.g_loss, g_optimizer])
         writer.add_summary(summary, global_step)
         #Update Generator Again
-        summary, g_loss, _ = sess.run([all_summary, model.g_loss, g_optimizer], feed_dict={model.z:batch_z})
+        summary, g_loss, _ = sess.run([all_summary, model.g_loss, g_optimizer])
         writer.add_summary(summary, global_step)
 
 

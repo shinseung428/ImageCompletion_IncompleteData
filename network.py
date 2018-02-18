@@ -12,7 +12,7 @@ class network():
         self.input_dim = args.input_dim 
 
         #prepare training data
-        self.Y_r, self.data_count = load_train_data(args)
+        self.Y_r, self.masks, self.data_count = load_train_data(args)
         self.build_model()
         self.build_loss()
 
@@ -27,7 +27,9 @@ class network():
     def build_model(self):
         self.X_g, self.g_nets = self.completion_net(self.Y_r, name="generator")
 
-        self.Y_g = self.measurement_fn(self.X_g, name="measurement_fn")
+        self.X_g = (1 - self.masks)*self.X_g + self.masks*self.Y_r
+
+        self.Y_g, _ = self.measurement_fn(self.X_g, name="measurement_fn")
         self.fake_d_logits, self.fake_d_net = self.discriminator(self.Y_g, name="discriminator")
         self.real_d_logits, self.real_d_net = self.discriminator(self.Y_r, name="discriminator", reuse=True)
 

@@ -28,20 +28,24 @@ def load_train_data(args):
 	if args.measurement == "block_pixels":
 		images = block_pixels(images, p=0.5)
 	elif args.measurement == "block_patch":
-		images = block_patch(images, k_size=32)
+		images, mask = block_patch(images, k_size=32)
 	elif args.measurement == "keep_patch":
 		images = keep_patch(images, k_size=32)
 	elif args.measurement == "conv_noise":
 		images = conv_noise(images, k_size=3, stddev=0.1)		
 
-	train_batch = tf.train.shuffle_batch([images],
+	mask = tf.reshape(mask, [args.input_height, args.input_height, 3])
+	mask = tf.image.convert_image_dtype(mask, dtype=tf.float32)
+
+
+	train_batch, masks = tf.train.shuffle_batch([images, mask],
 										 batch_size=args.batch_size,
 										 capacity=args.batch_size*2,
 										 min_after_dequeue=args.batch_size
 										)
 
 
-	return train_batch, data_count
+	return train_batch, masks, data_count
 
 
 #function to save images in tile
