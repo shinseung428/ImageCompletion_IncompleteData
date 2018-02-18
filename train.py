@@ -9,6 +9,8 @@ def train(args, sess, model):
     d_optimizer = tf.train.AdamOptimizer(args.learning_rate, beta1=args.momentum, name="AdamOptimizer_D").minimize(model.d_loss, var_list=model.d_vars)
 
 
+    clip_D = [p.assign(tf.clip_by_value(p, -0.01, 0.01)) for p in model.d_vars]
+
     epoch = 0
     step = 0
     global_step = 0
