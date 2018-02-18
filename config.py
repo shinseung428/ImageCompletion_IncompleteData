@@ -24,7 +24,7 @@ parser.add_argument('--input_dim', dest='input_dim', default=100, help='input z 
 #Training Settings
 parser.add_argument('--continue_training', dest='continue_training', default=False, type=str2bool, help='flag to continue training')
 
-parser.add_argument('--data', dest='data', default='/data', help='cats image train path')
+parser.add_argument('--data', dest='data', default='./data', help='cats image train path')
 
 parser.add_argument('--epochs', dest='epochs', default=25, help='total number of epochs')
 parser.add_argument('--batch_size', dest='batch_size', default=64, help='batch size')
