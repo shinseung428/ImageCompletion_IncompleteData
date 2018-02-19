@@ -28,7 +28,7 @@ def load_train_data(args):
 	if args.measurement == "block_pixels":
 		images = block_pixels(images, p=0.5)
 	elif args.measurement == "block_patch":
-		images, mask = block_patch(images, k_size=32)
+		images, mask = block_patch(images, k_size=28)
 	elif args.measurement == "keep_patch":
 		images = keep_patch(images, k_size=32)
 	elif args.measurement == "conv_noise":

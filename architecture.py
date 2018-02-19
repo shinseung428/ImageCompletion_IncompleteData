@@ -40,10 +40,10 @@ def conv2d(input, out_filter, padding, kernel=5, stride=2, name="conv2d"):
 
 		return conv
 
-def deconv2d(input, out_shape, name="deconv2d"):
+def deconv2d(input, kernel, out_shape, name="deconv2d"):
 	input_shape = input.get_shape().as_list()
 	with tf.variable_scope(name) as scope:
-		w = tf.get_variable("w", [5, 5, out_shape[-1], input_shape[-1]], initializer=tf.random_normal_initializer(stddev=0.02))
+		w = tf.get_variable("w", [kernel, kernel, out_shape[-1], input_shape[-1]], initializer=tf.random_normal_initializer(stddev=0.02))
 		b = tf.get_variable("b", [out_shape[-1]], initializer=tf.constant_initializer(0.0))
 		deconv = tf.nn.conv2d_transpose(input, w, 
 										output_shape=out_shape,

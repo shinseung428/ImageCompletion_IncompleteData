@@ -54,9 +54,9 @@ class network():
 
         #self.real_d_loss = calc_loss(self.real_d_logits, 1)
         #self.fake_d_loss = calc_loss(self.fake_d_logits, 0)
+        
         self.real_d_loss = -tf.reduce_mean(self.real_d_logits)
         self.fake_d_loss = tf.reduce_mean(self.fake_d_logits)
-
 
         self.d_loss = self.real_d_loss + self.fake_d_loss
         #self.g_loss = calc_loss(self.fake_d_logits, 1)
@@ -160,7 +160,7 @@ class network():
             conv8 = batch_norm(conv8, name="conv_bn8")
             conv8 = tf.nn.relu(conv8)
 
-            deconv1 = deconv2d(conv8, [self.batch_size, input_shape[1]/2, input_shape[2]/2, 128], name="deconv1")
+            deconv1 = deconv2d(conv8, 4, [self.batch_size, input_shape[1]/2, input_shape[2]/2, 128], name="deconv1")
             deconv1 = batch_norm(deconv1, name="deconv_bn1")
             deconv1 = tf.nn.relu(deconv1)
 
@@ -173,7 +173,7 @@ class network():
             conv9 = batch_norm(conv9, name="conv_bn9")
             conv9 = tf.nn.relu(conv9)
 
-            deconv2 = deconv2d(conv9, [self.batch_size, input_shape[1], input_shape[2], 64], name="deconv2")
+            deconv2 = deconv2d(conv9, 4, [self.batch_size, input_shape[1], input_shape[2], 64], name="deconv2")
             deconv2 = batch_norm(deconv2, name="deconv_bn2")
             deconv2 = tf.nn.relu(deconv2)
 
@@ -233,10 +233,18 @@ class network():
             conv4 = tf.nn.relu(conv4)
             nets.append(conv4)
 
+
+            # conv5 = tf.contrib.layers.conv2d(conv4, 1, 5, 2,
+            #                          padding="VALID",
+            #                          activation_fn=None,
+            #                          scope="conv5")
+            # conv5 = batch_norm(conv5, name="bn5")                                                                                                                           
+            # conv5 = tf.nn.relu(conv5)
+            # nets.append(conv5)
+
             flatten = tf.contrib.layers.flatten(conv4)
 
             output = linear(flatten, 1, name="linear")
-
 
             return output, nets
 
@@ -247,7 +255,7 @@ class network():
             if self.measurement == "block_pixels":
                 return block_pixels(input, p=0.5)
             elif self.measurement == "block_patch":
-                return block_patch(input, k_size=32)
+                return block_patch(input, k_size=28)
             elif self.measurement == "keep_patch":
                 return keep_patch(input, k_size=32)
             elif self.measurement == "conv_noise":
