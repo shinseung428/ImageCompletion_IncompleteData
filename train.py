@@ -2,6 +2,7 @@ import tensorflow as tf
 from config import *
 from network import *
 
+import cv2
 
 def train(args, sess, model):
     #optimizers
@@ -63,8 +64,33 @@ def train(args, sess, model):
             imgs = sess.run([model.Y_r,model.X_g])
             
 
-            img_tile(epoch, args, imgs[0], name="input")
-            img_tile(epoch, args, imgs[1], name="completed")
+
+            ##post processing test
+            # test = sess.run([model.X_g,model.masks])
+
+            # img = cv2.cvtColor(test[0][0], cv2.COLOR_BGR2RGB)
+            # img = (img + 1) * 127.5
+            # img = img.astype('uint8')
+            
+            # mask = cv2.cvtColor(test[1][0], cv2.COLOR_BGR2RGB)
+            # mask = 255 - ((mask+1)*127.5)
+            # mask = mask.astype('uint8')
+
+            
+            # dst = cv2.inpaint(img,mask[:,:,0],1,cv2.INPAINT_TELEA)
+            # # dst = img
+            # dst = dst.astype('float32')
+            # mask = mask.astype('float32')
+
+            # cv2.imshow("orig",img)
+            # cv2.imshow("mask",mask/255)
+            # cv2.imshow("test",dst/255)
+            # cv2.waitKey()
+            
+
+            img_tile(epoch, args, imgs[0][0], name="input")
+            img_tile(epoch, args, imgs[1][0], name="completed")
+
             step = 0
             epoch += 1 
 
