@@ -6,11 +6,11 @@ The model in this project combines two ideas from following works:
 * ambientGAN  
 * Globally and Locally Consistent Image Completion  
 
-The ambientGAN model enables training a generative model directly from noisy or incomplete samples. The generator successfully predicts samples from the true distribution with the use of a measurement function.  
+The ambientGAN model enables training a generative model directly from noisy or incomplete samples. The generator in the model successfully predicts samples from the true distribution with the use of a measurement function, but fails to reconstruct incomplete images used in training.  
 
-The model in Globally and Locally Consistent Image Completion uses fully-observed to train the completion network. Masked input is feeded into the network, and the completion network uses mse loss and discriminator loss to fill in the incomplete region.  
+On the other hand, the model in Globally and Locally Consistent Image Completion uses fully-observed to train the completion network. The network uses mse loss and discriminator loss to train the network, and in this process, fully-observed images are used.  
 
-By combining two ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using incomplete data (e.g. images randomly blocked by p x p patch).  
+By combining two ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using only incomplete data (e.g. images randomly blocked by p x p patch).  
 
 
 ## Network
