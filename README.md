@@ -1,4 +1,4 @@
-# Learning to complete images using only incomplete data  
+# Learning to complete images using incomplete data  
 
 Most of the image completion and generative models require fully-observed samples to train the network. However, as it's stated in the ambientGAN paper, obtaining high resolution samples can be very expensive or impractical for some applications.  
 
@@ -10,7 +10,7 @@ The AmbientGAN model enables training a generative model directly from noisy or 
 
 On the other hand, the model in Globally and Locally Consistent Image Completion uses fully-observed samples to train the network. The completion network first uses mse loss to pre-train the weights and further uses a discriminator loss to fully train the network.  
 
-By combining ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using only incomplete data (e.g. images randomly blocked by p x p patch).  
+By combining ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using only incomplete data (e.g. images randomly blocked by 28 x 28 patch).  
 
 
 ## Network
@@ -41,11 +41,11 @@ $ python train.py --continue_training=True
 ![Alt text](images/block_patch_res_2.gif?raw=true "res_2")  
 
 ## Conclusion  
-The resulting images show that the presented model learns to complete incompelte regions. There are some images with artifacts and unnatural textures, but in general the completion network learns to generate patches that goes well with the input image.  
+The resulting images show that the presented model learns to fill incompelte regions. There are some images filled with artifacts and inconsistent colors, but in general the completion network learns to generate patches that goes well with the input image.  
 
 
 ## Possible Improvements  
-* Post-processing to fix texture issue  
+* Post-processing to fix color inconsistency  
 
 
 ## Related Projects  
