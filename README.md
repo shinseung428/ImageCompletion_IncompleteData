@@ -45,7 +45,7 @@ The resulting images show that the presented model learns to fill incompelte reg
 
 
 ## Possible Improvements  
-* Post-processing to fix texture issue  
+* Post-processing to fix color inconsistency  
 
 
 ## Related Projects  
