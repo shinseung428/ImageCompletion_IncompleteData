@@ -88,8 +88,8 @@ def train(args, sess, model):
             # cv2.waitKey()
             
 
-            img_tile(epoch, args, imgs[0][0], name="input")
-            img_tile(epoch, args, imgs[1][0], name="completed")
+            img_tile(epoch, args, imgs[0], name="input")
+            img_tile(epoch, args, imgs[1], name="completed")
 
             step = 0
             epoch += 1 
