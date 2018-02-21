@@ -17,6 +17,10 @@ By combining ideas presented in ambientGAN and GLCIC paper, the network presente
 ![Alt text](images/network.png?raw=true "network")  
 
 
+## Method
+Let's assume that we have incomplete samples and we know the type of noise added to the samples.  
+Instead of using a random latent vector as an input, the completion network gets masked image as an input and uses the discriminator loss to update the weights. Assuming that the completion network successfully generated the masked region, the generated patch is combined together with the input image using the mask information. Then the completed image is fed into the measurement function. As described in the AmbientGAN paper, the measurement function tries to simulate the random measurements on the generated objects X_g. The resulting image given by the measurement function is then passed on to the discriminator that distinguishes real measurements from the fake measurements.  
+
 ## Training  
 ```
 $ python train.py 
@@ -33,7 +37,12 @@ $ python train.py --continue_training=True
 ![Alt text](images/block_patch_res_2.gif?raw=true "res_2")  
 
 ## Conclusion  
-The resulting images show that the presented model fills incompelte regioms in the images. There are some artifacts and unnatural textures in the filled regions, but in general the completion network learns to generate patches that goes well with the input image.
+The resulting images show that the presented model fills incompelte regions in the images. There are some images showing artifacts and unnatural textures in the filled regions, but in general the completion network learns to generate patches that goes well with the input image.  
+
+
+## Possible Improvements  
+* Post-processing to fix texture issue  
+
 
 ## Related Projects  
 * [AmbientGAN](https://openreview.net/forum?id=Hy7fDog0b)
