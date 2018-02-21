@@ -10,7 +10,7 @@ The AmbientGAN model enables training a generative model directly from noisy or 
 
 On the other hand, the model in Globally and Locally Consistent Image Completion uses fully-observed samples to train the network. The completion network first uses mse loss to pre-train the weights and further uses a discriminator loss to fully train the network.  
 
-By combining ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using only incomplete data (e.g. images randomly blocked by p x p patch).  
+By combining ideas presented in ambientGAN and GLCIC paper, the network presented in this project learns to fill incomplete regions in the images using only incomplete data (e.g. images randomly blocked by 28 x 28 patch).  
 
 
 ## Network
