@@ -27,7 +27,7 @@ The resulting image Y<sub>g</sub> after the measurement function and the incompl
 
 ## Dataset  
 [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset was used in this project. To create incomplete dataset, the original CelebA image was center cropped by 32x32 patch and was resized to 64x64. Then 28x28 patch was added randomly to the image. The blocked regions were filled with ones.  
-Example:  
+
 ![Alt text](images/dataset.jpg?raw=true "dataset")  
 
 ## Training  
