@@ -252,14 +252,17 @@ class network():
     #pass generated image to measurment model
     def measurement_fn(self, input, name="measurement_fn"):
         with tf.variable_scope(name) as scope:
-            if self.measurement == "block_pixels":
-                return block_pixels(input, p=0.5)
-            elif self.measurement == "block_patch":
+            # if self.measurement == "block_pixels":
+            #     return block_pixels(input, p=0.5)
+            # elif self.measurement == "block_patch":
+            #     return block_patch(input, k_size=28)
+            # elif self.measurement == "keep_patch":
+            #     return keep_patch(input, k_size=32)
+            # elif self.measurement == "conv_noise":
+            #     return conv_noise(input, k_size=32, stddev=0.1)
+            
+            if self.measurement == "block_patch":
                 return block_patch(input, k_size=28)
-            elif self.measurement == "keep_patch":
-                return keep_patch(input, k_size=32)
-            elif self.measurement == "conv_noise":
-                return conv_noise(input, k_size=32, stddev=0.1)
 
 
 
