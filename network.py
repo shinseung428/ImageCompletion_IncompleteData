@@ -234,16 +234,7 @@ class network():
             conv4 = batch_norm(conv4, name="bn4")                                                                                                                           
             conv4 = tf.nn.relu(conv4)
             nets.append(conv4)
-
-
-            # conv5 = tf.contrib.layers.conv2d(conv4, 1, 5, 2,
-            #                          padding="VALID",
-            #                          activation_fn=None,
-            #                          scope="conv5")
-            # conv5 = batch_norm(conv5, name="bn5")                                                                                                                           
-            # conv5 = tf.nn.relu(conv5)
-            # nets.append(conv5)
-
+            
             flatten = tf.contrib.layers.flatten(conv4)
 
             output = linear(flatten, 1, name="linear")
@@ -253,16 +244,7 @@ class network():
 
     #pass generated image to measurment model
     def measurement_fn(self, input, name="measurement_fn"):
-        with tf.variable_scope(name) as scope:
-            # if self.measurement == "block_pixels":
-            #     return block_pixels(input, p=0.5)
-            # elif self.measurement == "block_patch":
-            #     return block_patch(input, k_size=28)
-            # elif self.measurement == "keep_patch":
-            #     return keep_patch(input, k_size=32)
-            # elif self.measurement == "conv_noise":
-            #     return conv_noise(input, k_size=32, stddev=0.1)
-            
+        with tf.variable_scope(name) as scope:            
             if self.measurement == "block_patch":
                 return block_patch(input, k_size=28)
             elif self.measurement == "keep_patch":
