@@ -41,7 +41,7 @@ $ python train.py --continue_training=True
 ![Alt text](images/block_patch_res_2.gif?raw=true "res_2")  
 
 ## Conclusion  
-The resulting images show that the presented model learns to complete incompelte regions. There are some images with artifacts and unnatural textures, but in general the completion network learns to generate patches that goes well with the input image.  
+The resulting images show that the presented model learns to fill incompelte regions. There are some images filled with artifacts and inconsistent colors, but in general the completion network learns to generate patches that goes well with the input image.  
 
 
 ## Possible Improvements  
