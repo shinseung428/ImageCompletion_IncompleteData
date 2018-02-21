@@ -32,7 +32,8 @@ def load_train_data(args):
 	# elif args.measurement == "keep_patch":
 	# 	images = keep_patch(images, k_size=32)
 	# elif args.measurement == "conv_noise":
-	# 	images = conv_noise(images, k_size=3, stddev=0.1)		
+	# 	images = conv_noise(images, k_size=3, stddev=0.1)	
+		
 	if args.measurement == "block_patch":
 		images, mask = block_patch(images, k_size=28)
 	elif args.measurement == "keep_patch":

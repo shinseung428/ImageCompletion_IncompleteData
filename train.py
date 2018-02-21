@@ -9,7 +9,7 @@ def train(args, sess, model):
     g_optimizer = tf.train.AdamOptimizer(args.learning_rate, beta1=args.momentum, name="AdamOptimizer_G").minimize(model.g_loss, var_list=model.g_vars)
     d_optimizer = tf.train.AdamOptimizer(args.learning_rate, beta1=args.momentum, name="AdamOptimizer_D").minimize(model.d_loss, var_list=model.d_vars)
 
-
+    # clipping weights
     clip_D = [p.assign(tf.clip_by_value(p, -0.01, 0.01)) for p in model.d_vars]
 
     epoch = 0
@@ -63,8 +63,6 @@ def train(args, sess, model):
 
             imgs = sess.run([model.Y_r,model.X_g])
             
-
-
             ##post processing test
             # test = sess.run([model.X_g,model.masks])
 
@@ -88,6 +86,7 @@ def train(args, sess, model):
             # cv2.waitKey()
             
 
+            #saving image tile
             img_tile(epoch, args, imgs[0], name="input")
             img_tile(epoch, args, imgs[1], name="completed")
 
@@ -127,5 +126,3 @@ def main(_):
         train(args, sess, model)
 
 main(args)
-
-#Still Working....

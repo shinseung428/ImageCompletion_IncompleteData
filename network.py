@@ -42,7 +42,7 @@ class network():
             else:
                 self.d_vars.append(var)
 
-    #loss function
+    #loss function setting 
     def build_loss(self):
         def calc_loss(logits, label):
             if label==1:
@@ -51,9 +51,11 @@ class network():
                 y = tf.zeros_like(logits)
             return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=logits, labels=y))
 
+        #GAN loss
         #self.real_d_loss = calc_loss(self.real_d_logits, 1)
         #self.fake_d_loss = calc_loss(self.fake_d_logits, 0)
         
+        # WGAN loss
         self.real_d_loss = -tf.reduce_mean(self.real_d_logits)
         self.fake_d_loss = tf.reduce_mean(self.fake_d_logits)
 
@@ -61,6 +63,7 @@ class network():
         #self.g_loss = calc_loss(self.fake_d_logits, 1)
         self.g_loss = -self.fake_d_loss
 
+    # Completion network in the GLCIC paper
     def completion_net(self, input, name="generator", reuse=False):
         input_shape = input.get_shape().as_list()
         nets = []

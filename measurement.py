@@ -93,7 +93,6 @@ def block_patch(input, k_size=32):
 			res.append(tf.multiply(input[idx], padded) + (1-padded))
 		res = tf.stack(res)
 
-
 	return res, padded
 
 #All pixels outside a randomly chosen patch are set to zero
