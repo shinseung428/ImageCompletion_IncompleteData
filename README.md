@@ -1,4 +1,4 @@
-# Learning to complete images using only incomplete data  
+# Learning to complete images using incomplete data  
 
 Most of the image completion and generative models require fully-observed samples to train the network. However, as it's stated in the ambientGAN paper, obtaining high resolution samples can be very expensive or impractical for some applications.  
 
