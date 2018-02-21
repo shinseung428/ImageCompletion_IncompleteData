@@ -25,6 +25,11 @@ Next, the completed image X<sub>g</sub> is fed into the measurement function. As
 
 The resulting image Y<sub>g</sub> after the measurement function and the incomplete samples Y<sub>r</sub> are then passed on to the discriminator that distinguishes real measurements from the fake measurements. As the completion network and the discriminator network are trained adversarially, the completion network learns to generate patches that goes well with the incomplete samples.    
 
+## Dataset  
+[CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset was used in this project. To create incomplete dataset, the original CelebA image was center cropped by 32x32 patch and was resized to 64x64. Then 28x28 patch was added randomly to the image. The blocked regions were filled with ones.  
+Example:  
+![Alt text](images/dataset.jpg?raw=true "dataset")  
+
 ## Training  
 ```
 $ python train.py 

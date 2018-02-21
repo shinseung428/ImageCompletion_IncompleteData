@@ -266,7 +266,7 @@ class network():
             if self.measurement == "block_patch":
                 return block_patch(input, k_size=28)
             elif self.measurement == "keep_patch":
-                return keep_patch(input, k_size=28)
+                return keep_patch(input, k_size=32)
 
 
 

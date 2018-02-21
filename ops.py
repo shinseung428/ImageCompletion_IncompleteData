@@ -33,11 +33,11 @@ def load_train_data(args):
 	# 	images = keep_patch(images, k_size=32)
 	# elif args.measurement == "conv_noise":
 	# 	images = conv_noise(images, k_size=3, stddev=0.1)	
-		
+
 	if args.measurement == "block_patch":
 		images, mask = block_patch(images, k_size=28)
 	elif args.measurement == "keep_patch":
-		images, mask = keep_patch(images, k_size=28)
+		images, mask = keep_patch(images, k_size=32)
 	
 	mask = tf.reshape(mask, [args.input_height, args.input_height, 3])
 	mask = tf.image.convert_image_dtype(mask, dtype=tf.float32)
