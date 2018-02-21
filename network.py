@@ -9,7 +9,6 @@ class network():
     def __init__(self, args):
         self.measurement = args.measurement
         self.batch_size = args.batch_size
-        self.input_dim = args.input_dim 
 
         #prepare training data
         self.Y_r, self.masks, self.data_count = load_train_data(args)
@@ -263,6 +262,8 @@ class network():
             
             if self.measurement == "block_patch":
                 return block_patch(input, k_size=28)
+            elif self.measurement == "keep_patch":
+                return keep_patch(input, k_size=28)
 
 
 
