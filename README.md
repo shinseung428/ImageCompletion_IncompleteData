@@ -19,7 +19,11 @@ By combining ideas presented in ambientGAN and GLCIC paper, the network presente
 
 ## Method
 Let's assume that we have incomplete samples and we know the type of noise added to the samples.  
-Instead of using a random latent vector as an input, the completion network gets masked image as an input. Assuming that the completion network successfully generates the masked region, the generated patch is combined together with the input image using the mask information X<sub>g</sub>. Next, the completed image X<sub>g</sub> is fed into the measurement function f<sub>&theta</sub>. As described in the AmbientGAN paper, the measurement function tries to simulate the random measurements on the generated objects X<sub>g</sub>. This is possible since we know the type of noise added to the fully-observed images. We can create a measurement function that could simulate the noise added to the image. The resulting image Y<sub>g</sub> after the measurement function and the incomplete samples Y<sub>r</sub> are then passed on to the discriminator that distinguishes real measurements from the fake measurements. As the completion network and the discriminator network are trained adversarially, the completion network learns to generate patches that goes well with the incomplete samples.    
+Instead of using a random latent vector as an input, the completion network gets masked image as an input. Assuming that the completion network successfully generates the masked region, the generated patch is combined together with the input image using the mask information X<sub>g</sub>.  
+
+Next, the completed image X<sub>g</sub> is fed into the measurement function. As described in the AmbientGAN paper, the measurement function tries to simulate the random measurements on the generated objects X<sub>g</sub>. This is possible since we know the type of noise added to the fully-observed images. We can create a measurement function that could simulate the noise added to the image.  
+
+The resulting image Y<sub>g</sub> after the measurement function and the incomplete samples Y<sub>r</sub> are then passed on to the discriminator that distinguishes real measurements from the fake measurements. As the completion network and the discriminator network are trained adversarially, the completion network learns to generate patches that goes well with the incomplete samples.    
 
 ## Training  
 ```
